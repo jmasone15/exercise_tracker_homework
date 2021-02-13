@@ -19,6 +19,7 @@
   "homepage": "https://github.com/jmasone15/exercise_tracker_homework#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "mongoose": "^5.11.16"
+    "mongoose": "^5.11.16",
+    "morgan": "^1.10.0"
   }
 }
