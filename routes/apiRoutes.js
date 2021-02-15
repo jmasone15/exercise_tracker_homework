@@ -6,12 +6,64 @@ const { mongo } = require("mongoose");
 // Get Routes
 // Aggregate fuction for get routes
 router.get("/api/workouts", async (req, res) => {
-    const workouts = await Workout.find({});
+    const workouts = await Workout.aggregate([
+        {
+            $addFields: {
+                totalDuration: { $sum: "$duration" }
+            }
+        },
+        {
+            $addFields: {
+                totalWeight: { $sum: "$weight" }
+            }
+        },
+        {
+            $addFields: {
+                totalSets: { $sum: "$sets" }
+            }
+        },
+        {
+            $addFields: {
+                totalReps: { $sum: "$reps" }
+            }
+        },
+        {
+            $addFields: {
+                totalDistance: { $sum: "$distance" }
+            }
+        }
+    ]);
     res.json(workouts);
 });
 
 router.get("/api/workouts/range", async (req, res) => {
-    const workoutsRange = await Workout.find({}).limit(7);
+    const workoutsRange = await Workout.aggregate([
+        {
+            $addFields: {
+                totalDuration: { $sum: "$duration" }
+            }
+        },
+        {
+            $addFields: {
+                totalWeight: { $sum: "$weight" }
+            }
+        },
+        {
+            $addFields: {
+                totalSets: { $sum: "$sets" }
+            }
+        },
+        {
+            $addFields: {
+                totalReps: { $sum: "$reps" }
+            }
+        },
+        {
+            $addFields: {
+                totalDistance: { $sum: "$distance" }
+            }
+        }
+    ]).limit(7);
     res.json(workoutsRange);
 });
 
@@ -24,6 +76,7 @@ router.post("/api/workouts", async (req, res) => {
 // Put Routes
 router.put("/api/workouts/:id", async (req, res) => {
     const updatedWorkout = await Workout.updateOne({ _id: req.params.id }, { $push: { exercises: req.body } });
+    console.log(req.body);
     res.json(updatedWorkout);
 });
 
