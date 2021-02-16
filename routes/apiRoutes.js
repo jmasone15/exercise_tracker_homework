@@ -11,26 +11,6 @@ const { mongo } = require("mongoose");
 //             $addFields: {
 //                 totalDuration: { $sum: "$exercises.duration" }
 //             }
-//         },
-//         {
-//             $addFields: {
-//                 totalWeight: { $sum: "$exercises.weight" }
-//             }
-//         },
-//         {
-//             $addFields: {
-//                 totalSets: { $sum: "$exercises.sets" }
-//             }
-//         },
-//         {
-//             $addFields: {
-//                 totalReps: { $sum: "$exercises.reps" }
-//             }
-//         },
-//         {
-//             $addFields: {
-//                 totalDistance: { $sum: "$exercises.distance" }
-//             }
 //         }
 //     ]);
 //     console.log(workouts)
@@ -42,26 +22,6 @@ router.get("/api/workouts", (req, res) => {
         {
             $addFields: {
                 totalDuration: { $sum: "$exercises.duration" }
-            }
-        },
-        {
-            $addFields: {
-                totalWeight: { $sum: "$exercises.weight" }
-            }
-        },
-        {
-            $addFields: {
-                totalSets: { $sum: "$exercises.sets" }
-            }
-        },
-        {
-            $addFields: {
-                totalReps: { $sum: "$exercises.reps" }
-            }
-        },
-        {
-            $addFields: {
-                totalDistance: { $sum: "$exercises.distance" }
             }
         }
     ], (err, data) => {
@@ -76,26 +36,6 @@ router.get("/api/workouts", (req, res) => {
 //             $addFields: {
 //                 totalDuration: { $sum: "$exercises.duration" }
 //             }
-//         },
-//         {
-//             $addFields: {
-//                 totalWeight: { $sum: "$exercises.weight" }
-//             }
-//         },
-//         {
-//             $addFields: {
-//                 totalSets: { $sum: "$exercises.sets" }
-//             }
-//         },
-//         {
-//             $addFields: {
-//                 totalReps: { $sum: "$exercises.reps" }
-//             }
-//         },
-//         {
-//             $addFields: {
-//                 totalDistance: { $sum: "$exercises.distance" }
-//             }
 //         }
 //     ]).limit(7);
 //     res.json(workoutsRange);
@@ -106,26 +46,6 @@ router.get("/api/workouts/range", (req, res) => {
         {
             $addFields: {
                 totalDuration: { $sum: "$exercises.duration" }
-            }
-        },
-        {
-            $addFields: {
-                totalWeight: { $sum: "$exercises.weight" }
-            }
-        },
-        {
-            $addFields: {
-                totalSets: { $sum: "$exercises.sets" }
-            }
-        },
-        {
-            $addFields: {
-                totalReps: { $sum: "$exercises.reps" }
-            }
-        },
-        {
-            $addFields: {
-                totalDistance: { $sum: "$exercises.distance" }
             }
         }
     ], (err, data) => {
