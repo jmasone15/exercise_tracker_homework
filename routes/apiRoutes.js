@@ -101,7 +101,7 @@ router.get("/api/workouts", (req, res) => {
 //     res.json(workoutsRange);
 // });
 
-router.get("/api/workouts", (req, res) => {
+router.get("/api/workouts/range", (req, res) => {
     Workout.aggregate([
         {
             $addFields: {
@@ -128,10 +128,10 @@ router.get("/api/workouts", (req, res) => {
                 totalDistance: { $sum: "$exercises.distance" }
             }
         }
-    ]).limit(7, (err, data) => {
+    ], (err, data) => {
         if (err) throw err;
         res.json(data);
-    });
+    }).limit(7);
 });
 
 // // Post Routes
