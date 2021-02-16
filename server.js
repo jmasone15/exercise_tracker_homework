@@ -18,7 +18,8 @@ Mongoose.connect(
         useUnifiedTopology: true,
         useCreateIndex: true,
         useFindAndModify: false
-    });
+    }
+);
 
 app.use(require("./routes/htmlRoutes"));
 app.use(require("./routes/apiRoutes"));
