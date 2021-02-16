@@ -9,30 +9,31 @@ router.get("/api/workouts", async (req, res) => {
     const workouts = await Workout.aggregate([
         {
             $addFields: {
-                totalDuration: { $sum: "$duration" }
+                totalDuration: { $sum: "$exercises.duration" }
             }
         },
         {
             $addFields: {
-                totalWeight: { $sum: "$weight" }
+                totalWeight: { $sum: "$exercises.weight" }
             }
         },
         {
             $addFields: {
-                totalSets: { $sum: "$sets" }
+                totalSets: { $sum: "$exercises.sets" }
             }
         },
         {
             $addFields: {
-                totalReps: { $sum: "$reps" }
+                totalReps: { $sum: "$exercises.reps" }
             }
         },
         {
             $addFields: {
-                totalDistance: { $sum: "$distance" }
+                totalDistance: { $sum: "$exercises.distance" }
             }
         }
     ]);
+    console.log(workouts)
     res.json(workouts);
 });
 
@@ -40,27 +41,27 @@ router.get("/api/workouts/range", async (req, res) => {
     const workoutsRange = await Workout.aggregate([
         {
             $addFields: {
-                totalDuration: { $sum: "$duration" }
+                totalDuration: { $sum: "$exercises.duration" }
             }
         },
         {
             $addFields: {
-                totalWeight: { $sum: "$weight" }
+                totalWeight: { $sum: "$exercises.weight" }
             }
         },
         {
             $addFields: {
-                totalSets: { $sum: "$sets" }
+                totalSets: { $sum: "$exercises.sets" }
             }
         },
         {
             $addFields: {
-                totalReps: { $sum: "$reps" }
+                totalReps: { $sum: "$exercises.reps" }
             }
         },
         {
             $addFields: {
-                totalDistance: { $sum: "$distance" }
+                totalDistance: { $sum: "$exercises.distance" }
             }
         }
     ]).limit(7);
