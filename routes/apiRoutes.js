@@ -32,7 +32,7 @@ router.get("/api/workouts", async (req, res) => {
                 totalDistance: { $sum: "$exercises.distance" }
             }
         }
-    ]).catch(e => { console.log(e); });
+    ]);
     console.log(workouts)
     res.json(workouts);
 });
@@ -97,7 +97,7 @@ router.get("/api/workouts/range", async (req, res) => {
                 totalDistance: { $sum: "$exercises.distance" }
             }
         }
-    ]).limit(7).catch(e => { console.log(e); });
+    ]).limit(7);
     res.json(workoutsRange);
 });
 
@@ -136,7 +136,7 @@ router.get("/api/workouts/range", async (req, res) => {
 
 // Post Routes
 router.post("/api/workouts", async (req, res) => {
-    const newWorkout = await Workout.create({}).catch(e => { console.log(e); });
+    const newWorkout = await Workout.create({});
     res.json(newWorkout);
 });
 
@@ -149,7 +149,7 @@ router.post("/api/workouts", async (req, res) => {
 
 // Put Routes
 router.put("/api/workouts/:id", async (req, res) => {
-    const updatedWorkout = await Workout.updateOne({ _id: req.params.id }, { $push: { exercises: req.body } }).catch(e => { console.log(e); });
+    const updatedWorkout = await Workout.updateOne({ _id: req.params.id }, { $push: { exercises: req.body } });
     console.log(req.body);
     res.json(updatedWorkout);
 });
