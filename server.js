@@ -19,7 +19,11 @@ Mongoose.connect(
         useCreateIndex: true,
         useFindAndModify: false
     }
-);
+).then(() => {
+    console.log("Database connected!");
+}).catch((err) => {
+    console.log(err);
+});
 
 app.use(require("./routes/htmlRoutes"));
 app.use(require("./routes/apiRoutes"));
