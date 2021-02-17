@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 Mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost/workout",
+    process.env.MONGODB_URI || "mongodb://localhost:27017/workout",
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
