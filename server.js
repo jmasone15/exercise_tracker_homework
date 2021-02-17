@@ -12,14 +12,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 Mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost:27017/workout",
+    process.env.MONGODB_URI || "mongodb://localhost/workout",
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
         useFindAndModify: false
     }
-);
+).then(() => {
+    console.log("Database connected!");
+}).catch((err) => {
+    console.log(err);
+});
 
 app.use(require("./routes/htmlRoutes"));
 app.use(require("./routes/apiRoutes"));
