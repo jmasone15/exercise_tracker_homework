@@ -4,19 +4,6 @@ const db = require("../models");
 const { mongo } = require("mongoose");
 
 // Get Routes
-// Aggregate fuction for get routes
-// router.get("/api/workouts", async (req, res) => {
-//     const workouts = await Workout.aggregate([
-//         {
-//             $addFields: {
-//                 totalDuration: { $sum: "$exercises.duration" }
-//             }
-//         }
-//     ]);
-//     console.log(workouts)
-//     res.json(workouts);
-// });
-
 router.get("/api/workouts", (req, res) => {
     Workout.aggregate([
         {
@@ -29,17 +16,6 @@ router.get("/api/workouts", (req, res) => {
         res.json(data)
     });
 });
-
-// router.get("/api/workouts/range", async (req, res) => {
-//     const workoutsRange = await Workout.aggregate([
-//         {
-//             $addFields: {
-//                 totalDuration: { $sum: "$exercises.duration" }
-//             }
-//         }
-//     ]).limit(7);
-//     res.json(workoutsRange);
-// });
 
 router.get("/api/workouts/range", (req, res) => {
     Workout.aggregate([
@@ -54,12 +30,8 @@ router.get("/api/workouts/range", (req, res) => {
     }).limit(7);
 });
 
-// Post Routes
-// router.post("/api/workouts", async (req, res) => {
-//     const newWorkout = await Workout.create({});
-//     res.json(newWorkout);
-// });
 
+// Post Routes
 router.post("/api/workouts", (req, res) => {
     Workout.create({}, (err, data) => {
         if (err) throw err;
@@ -67,13 +39,8 @@ router.post("/api/workouts", (req, res) => {
     });
 });
 
-// Put Routes
-// router.put("/api/workouts/:id", async (req, res) => {
-//     const updatedWorkout = await Workout.updateOne({ _id: req.params.id }, { $push: { exercises: req.body } });
-//     console.log(req.body);
-//     res.json(updatedWorkout);
-// });
 
+// Put Routes
 router.put("/api/workouts/:id", (req, res) => {
     Workout.updateOne({ _id: req.params.id }, { $push: { exercises: req.body } },
         (err, data) => {
@@ -82,5 +49,6 @@ router.put("/api/workouts/:id", (req, res) => {
         }
     );
 });
+
 
 module.exports = router;
